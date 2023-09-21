@@ -1,19 +1,3 @@
-const searchEl = document.querySelector('.search');
-const searchInputEl = searchEl.querySelector('input');
-
-searchEl.addEventListener('click', function(){
-  searchInputEl.focus();
-});
-
-searchInputEl.addEventListener('focus', function(){
-  searchEl.classList.add('focused');
-  searchInputEl.setAttribute('placeholder', '통합검색');
-});
-
-searchInputEl.addEventListener('blur', function(){
-  searchEl.classList.remove('focused');
-  searchInputEl.setAttribute('placeholder', '');
-});
 
 const badgeEl = document.querySelector('header .badges');
 const toTopEl = document.querySelector('#to-top');
@@ -27,7 +11,7 @@ window.addEventListener ('scroll', _.throttle (function () {
       display: 'none'
     }); // 버튼 보이기!
     gsap.to(toTopEl, .2, {
-      X: 0
+      x: 0
       });
   } else { 
     //배지 보이기
@@ -36,7 +20,7 @@ window.addEventListener ('scroll', _.throttle (function () {
       display: 'block'
     }); // 버튼 숨기기!
     gsap.to(toTopEl, .2, {
-      X:100
+      x:100
     });
   } 
 }, 300));
@@ -68,9 +52,9 @@ new Swiper('.notice-line .swiper', {
 
 new Swiper('.promotion .swiper', {
   // direction: 'horizontal', // 수평 슬라이드
-  //  autoplay: { // 자동 재생 여부
-  // delay: 1000 // 5초마다 슬라이드 바뀜
-  // },
+  autoplay: { // 자동 재생 여부
+  delay: 3000 // 5초마다 슬라이드 바뀜
+  },
   loop: true, // 반복 재생 여부
   slidesPerView: 3, // 한 번에 보여줄 슬라이드 개수
   spaceBetween: 10, // 슬라이드 사이 여백
@@ -98,20 +82,37 @@ new Swiper('.awards .swiper', {
 });
 
 
+//인강꺼 원본
+// const promotionToggleBtn = document.querySelector('.toggle-promotion');
+// const promotionEl = document.querySelector('.promotion');
 
- const promotionEl = document.querySelector('.promotion');
- const promotionToggleBtn = document.querySelector('.toggle-promotion');
- let isHidePromotion = false; 
- promotionToggleBtn.addEventListener('click', function(){
-   isHidePromotion = !isHidePromotion 
-   if (isHidePromotion) {
-     //숨김처리
-     promotionEl.classList.add('hide');
-   } else {
-     //보임처리
-    promotionEl.classList.remove('hide');
-    }
- });
+//  let isHidePromotion = false; 
+//  promotionToggleBtn.addEventListener('click', function(){
+//    isHidePromotion = !isHidePromotion 
+//    if (isHidePromotion) {
+//      //숨김처리
+//      promotionEl.classList.add('hide');
+//    } else {
+//      //보임처리
+//     promotionEl.classList.remove('hide');
+//     }
+//  });
+
+
+//크몽 첨삭버전
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+promotionToggleBtn.addEventListener('click', function(){
+
+// isHidePromotion = !isHidePromotion
+if (promotionEl.style.display=='none') {
+//숨김처리
+promotionEl.style.display='block';
+} else {
+//보임처리
+promotionEl.style.display='none';
+}
+});
 
 
 
@@ -152,5 +153,3 @@ function random(min, max) {
       .addTo(new ScrollMagic.Controller());
  });
 
- const thisYear = document.querySelector('.this-year');
- thisYear.textContent = new Date().getFullYear(); //2023이라는 숫자가 this-year이라는 클래스를 가진 요소에 글자 내용으로 삽입이 된다.
